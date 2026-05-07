@@ -2,168 +2,89 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>404 - Страница удалена</title>
+    <title>Страница удалена</title>
     <style>
         body {
-            background-color: #f0f0f0;
+            background-color: #ffffff;
             font-family: "Tahoma", sans-serif;
             margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
         }
 
-        /* Экран блокировки */
-        #fake-error-page {
-            background: white;
-            border: 2px solid #ccc;
-            padding: 40px;
-            width: 80%;
-            max-width: 900px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* Заглушка */
+        #error-page {
             text-align: center;
+            color: #333;
         }
-
-        .error-header {
+        .error-msg {
             color: #ff0000;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
+            text-decoration: underline;
             margin-bottom: 20px;
-            border-bottom: 2px solid #ff0000;
-            width: 100%;
         }
 
-        .content-layout {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin-top: 20px;
+        /* Лаконичное поздравление */
+        #secret-site {
+            display: none;
+            background-color: #000080;
+            color: #ffff00;
+            font-family: "Comic Sans MS", cursive;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            text-align: center;
+            padding-top: 150px;
         }
 
-        .mrca-img {
-            max-width: 300px;
-            border: 3px solid #000;
+        .main-box {
+            border: 3px double #ffffff;
+            display: inline-block;
+            padding: 40px;
+            background: #000080;
         }
 
-        video {
-            width: 400px;
-            background: #000;
-        }
-
-        /* Кнопка "Взломать" или просто секретный вход */
-        #secret-trigger {
+        /* Секретный угол */
+        #trigger {
             position: fixed;
             bottom: 0;
             right: 0;
             width: 40px;
             height: 40px;
             cursor: pointer;
-            z-index: 9999;
-        }
-
-        /* Тот самый сайт из 2007 (скрыт изначально) */
-        #real-site {
-            display: none;
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #000080 url('https://archive.org');
-            color: #ffff00;
-            font-family: "Comic Sans MS", cursive;
-            text-align: center;
-            padding-top: 50px;
-            overflow-y: auto;
-        }
-
-        #main-container {
-            background: #fff; color: #000;
-            border: 5px double #ff00ff;
-            width: 70%; margin: 0 auto; padding: 20px;
-            box-shadow: 15px 15px 0px #000;
-        }
-
-        .hidden { display: none; }
-        .glitch { animation: shake 0.2s infinite; background: #000 !important; color: #ff0000 !important; }
-        @keyframes shake {
-            0% { transform: translate(1px, 1px); }
-            50% { transform: translate(-2px, -1px); }
-            100% { transform: translate(1px, 1px); }
         }
     </style>
 </head>
 <body>
 
-    <!-- ФЕЙКОВАЯ СТРАНИЦА ОШИБКИ -->
-    <div id="fake-error-page">
-        <div class="error-header">УВЫ, ЭТОТ САЙТ УДАЛИЛ МОДЕРАТОР!</div>
-        <p>Доступ заблокирован из-за нарушения правил хостинга Народ.ру (2007)</p>
-        <p><strong>НО вы можете послушать удивительную ковбойскую песню!!!</strong></p>
-        
-        <div class="content-layout">
-            <img src="Mrca.png" alt="Moderator Info" class="mrca-img">
-            <video controls autoplay loop>
-                <source src="Cowboy.mp4" type="video/mp4">
-                Ваш браузер не поддерживает видео.
-            </video>
+    <!-- ЭКРАН 1: МОДЕРАТОР -->
+    <div id="error-page">
+        <div class="error-msg">УВЫ, ЭТОТ САЙТ УДАЛИЛ МОДЕРАТОР</div>
+        <p>Вы можете послушать удивительную ковбойскую песню:</p>
+        <img src="Mrca.png" style="width: 150px; display: block; margin: 10px auto;">
+        <video controls autoplay loop style="width: 320px;">
+            <source src="Cowboy.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- ЭКРАН 2: УРЕЗАННОЕ ПОЗДРАВЛЕНИЕ -->
+    <div id="secret-site">
+        <div class="main-box">
+            <h1 style="text-transform: uppercase;">Поздравляю!</h1>
+            <p>Надеюсь, Сэлли это увидит! ( ^ _ ^ )</p>
+            <p>Стань круче Рингмастера!</p>
         </div>
     </div>
 
-    <!-- НАСТОЯЩИЙ САЙТ (ПОЯВИТСЯ ПРИ КЛИКЕ) -->
-    <div id="real-site">
-        <marquee style="background: yellow; color: red; font-weight: bold;">!!! СЕКРЕТНЫЙ ДОСТУП ПОЛУЧЕН !!! С ДНЕМ РОЖДЕНИЯ !!!</marquee>
-        
-        <div id="main-container">
-            <div id="greeting-text">
-                <h1 style="color: red; text-decoration: underline;">ПОЗДРАВЛЯЮ!</h1>
-                <p>Надеюсь Сэлли это увидит! ( ^ _ ^ )</p>
-                <p>Пусть у тебя все будет хорошо!</p>
-                <p>Стань круче Рингмастера!</p>
-            </div>
-
-            <div id="dialog-text" class="hidden" style="text-align: left; font-family: monospace;">
-                <p><strong>[ЛОГ ВОССТАНОВЛЕН]</strong></p>
-                <p>Сэлли: Мунлитул! Видела торт в форме меня?</p>
-                <p>Мунлитул: Опять в форме тебя...</p>
-                <p>Мунлитул: Я тень. Ты солнце. Но когда твое солнце зайдет, все придут в мою темноту.</p>
-                <p style="text-align: center; color: red;"><strong>КТО ИЗ НАС ВАЖНЕЕ?</strong></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- СЕКРЕТНЫЙ КЛИК В УГЛУ -->
-    <div id="secret-trigger" onclick="entry()"></div>
+    <div id="trigger" onclick="openSecret()"></div>
 
     <script>
-        let stage = 0;
-
-        function entry() {
-            const errorPage = document.getElementById('fake-error-page');
-            const realSite = document.getElementById('real-site');
-            const greet = document.getElementById('greeting-text');
-            const dialog = document.getElementById('dialog-text');
-            const container = document.getElementById('main-container');
-
-            if (stage === 0) {
-                // Переход от "Ошибки" к Поздравлению
-                errorPage.style.display = 'none';
-                realSite.style.display = 'block';
-                stage = 1;
-            } else if (stage === 1) {
-                // Переход от Поздравления к Диалогу (Скример-эффект)
-                greet.classList.add('hidden');
-                dialog.classList.remove('hidden');
-                container.classList.add('glitch');
-                realSite.style.background = "#000";
-                stage = 2;
-            } else {
-                // Возврат в начало
-                location.reload();
-            }
+        function openSecret() {
+            document.getElementById('error-page').style.display = 'none';
+            document.getElementById('secret-site').style.display = 'block';
+            document.body.style.backgroundColor = "#000080";
         }
     </script>
 </body>
