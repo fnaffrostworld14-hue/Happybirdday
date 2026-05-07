@@ -2,94 +2,144 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>404 Not Found</title>
+    <title>RECOVERED_FILE_0705.HTM</title>
     <style>
+        /* Эффект старого монитора и помех */
         body {
-            background-color: #fff;
-            color: #000;
-            font-family: "Arial", sans-serif;
+            background-color: #050505;
+            color: #d1d1d1;
+            font-family: "Courier New", Courier, monospace;
             margin: 0;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            text-align: center;
         }
 
-        /* Экран ошибки */
+        /* Сканирующие линии монитора */
+        body::before {
+            content: " ";
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        /* Экран ошибки модератора (Фальшивка) */
         #error-screen {
-            display: block;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #333;
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        h1 { font-size: 48px; margin: 0; }
-        .mod-text { color: #ff0000; font-weight: bold; text-decoration: underline; margin: 20px 0; }
+        .alert-text {
+            background: #ff0000;
+            color: #fff;
+            padding: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: flicker 0.1s infinite;
+        }
 
-        /* Экран поздравления */
-        #congratulations {
+        /* Секретный контент (Lost Media) */
+        #lost-media {
             display: none;
-            background-color: #000080; /* Классический синий из 2007 */
-            color: #ffff00;
-            padding: 50px;
-            border: 5px double #ffffff;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Скрытая область в углу */
-        #secret-button {
+        .vhs-text {
+            color: #fff;
+            text-shadow: 2px 0 #ff0000, -2px 0 #0000ff;
+            font-size: 32px;
+            animation: glitch 1s infinite;
+            text-transform: uppercase;
+        }
+
+        /* Анимации */
+        @keyframes flicker {
+            0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Невидимый угол (Триггер) */
+        #secret-trigger {
             position: fixed;
             bottom: 0;
             right: 0;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            z-index: 100;
+            width: 40px;
+            height: 40px;
+            cursor: crosshair;
+            z-index: 9999;
         }
 
-        video {
-            width: 320px;
-            margin-top: 15px;
-            border: 1px solid #ccc;
-        }
+        .mrca { width: 140px; filter: grayscale(100%) contrast(150%); margin: 15px; }
+        video { width: 320px; filter: sepia(100%) brightness(80%) contrast(120%); }
 
-        .mrca {
-            width: 120px;
-            display: block;
-            margin: 10px auto;
+        #rec-dot {
+            width: 15px; height: 15px; background: red; border-radius: 50%;
+            display: inline-block; margin-right: 10px;
+            animation: flicker 0.5s infinite;
         }
     </style>
 </head>
 <body>
 
-    <!-- СТРАНИЦА ОШИБКИ -->
+    <!-- ЭКРАН 1: ФЕЙК МОДЕРАЦИИ -->
     <div id="error-screen">
-        <h1>404 Not Found</h1>
-        <div class="mod-text">УВЫ, ЭТОТ САЙТ УДАЛИЛ МОДЕРАТОР</div>
-        <p>Вы можете послушать удивительную ковбойскую песню:</p>
-        
-        <img src="Mrca.png" alt="Moderator" class="mrca">
-        
+        <div class="alert-text">УДАЛЕНО МОДЕРАТОРОМ</div>
+        <p style="font-size: 14px;">Материал признан утерянным или опасным.</p>
+        <img src="Mrca.png" alt="???" class="mrca">
+        <p>Сохраненная аудио-дорожка:</p>
         <video controls autoplay loop>
             <source src="Cowboy.mp4" type="video/mp4">
         </video>
     </div>
 
-    <!-- ПОЗДРАВЛЕНИЕ -->
-    <div id="congratulations">
-        <h2 style="font-size: 36px;">ПОЗДРАВЛЯЮ!</h2>
-        <p>Надеюсь, Сэлли это увидит! ( ^ _ ^ )</p>
-        <p>Стань круче Рингмастера!</p>
+    <!-- ЭКРАН 2: LOST MEDIA / ARG -->
+    <div id="lost-media">
+        <div style="position: absolute; top: 20px; left: 20px; font-weight: bold;">
+            <span id="rec-dot"></span>REC 07/05/20XX
+        </div>
+        
+        <div class="vhs-text">Объект: СЭЛЛИ</div>
+        <br>
+        <p style="font-size: 20px;">Надеюсь Сэлли это увидит... если еще может.</p>
+        <p style="color: #666;">(Системное примечание: Субъект превзошел Рингмастера)</p>
+        <br>
+        <div style="font-size: 12px; color: #333;">ВНИМАНИЕ: ФАЙЛ ПОВРЕЖДЕН</div>
     </div>
 
-    <!-- НЕВИДИМАЯ КНОПКА -->
-    <div id="secret-button" onclick="showSecret()"></div>
+    <!-- СЕКРЕТНЫЙ КЛИК -->
+    <div id="secret-trigger" onclick="unlock()"></div>
 
     <script>
-        function showSecret() {
-            // Скрываем ошибку
+        function unlock() {
+            // Звуковой эффект помех при переходе (имитация)
+            document.body.style.backgroundColor = "#000";
             document.getElementById('error-screen').style.display = 'none';
-            // Показываем поздравление
-            document.getElementById('congratulations').style.display = 'block';
-            // Меняем фон страницы на синий
-            document.body.style.backgroundColor = "#000080";
+            document.getElementById('lost-media').style.display = 'block';
+            
+            // Кратковременная вспышка помех
+            document.body.style.filter = "invert(100%)";
+            setTimeout(() => {
+                document.body.style.filter = "none";
+            }, 150);
         }
     </script>
 </body>
