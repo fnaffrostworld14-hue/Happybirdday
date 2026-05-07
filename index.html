@@ -14,13 +14,13 @@
             height: 100vh;
         }
 
-        /* Экран модерации (внешний слой) */
+        /* Заглушка модератора */
         #moderator-layer {
             background: #fff;
             border: 1px solid #999;
             padding: 30px;
             width: 80%;
-            max-width: 700px;
+            max-width: 600px;
             text-align: center;
             box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
         }
@@ -28,41 +28,55 @@
         .alert-box {
             color: #ff0000;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 18px;
             border: 2px solid #ff0000;
             padding: 10px;
             margin-bottom: 20px;
+            text-transform: uppercase;
         }
 
-        /* Экран Lost Media (скрытый слой) */
+        /* Скрытая переписка */
         #lost-media-layer {
             display: none;
-            background-color: #000040; /* Глубокий синий, как в старых ОС */
-            color: #ccc;
+            background-color: #000022; 
+            color: #00ff00; /* Зеленый терминальный цвет */
             width: 100%;
             height: 100%;
             position: fixed;
             top: 0; left: 0;
-            padding: 50px;
+            padding: 40px;
             box-sizing: border-box;
             text-align: left;
             font-family: "Courier New", monospace;
         }
 
-        .file-info {
-            color: #00ff00;
-            border-bottom: 1px solid #00ff00;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            font-size: 14px;
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            border-left: 2px solid #004400;
+            padding-left: 20px;
         }
 
-        .archive-content {
-            font-size: 18px;
-            line-height: 1.6;
+        .msg {
+            margin-bottom: 15px;
+            opacity: 0.9;
         }
 
-        /* Невидимый триггер в углу */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: #00ff00;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Секретный угол */
         #trigger {
             position: fixed;
             bottom: 0;
@@ -73,60 +87,50 @@
             z-index: 9999;
         }
 
-        img.mod-img {
-            width: 140px;
-            border: 1px solid #ccc;
-            margin: 15px 0;
-        }
-
-        video.mod-video {
-            width: 320px;
-            border: 1px solid #000;
-            background: #000;
-        }
+        img.mod-img { width: 120px; filter: grayscale(50%); margin: 10px; }
+        video.mod-video { width: 300px; border: 1px solid #000; }
     </style>
 </head>
 <body>
 
-    <!-- ЭКРАН 1: ОШИБКА -->
+    <!-- ЭКРАН 1: МОДЕРАТОР -->
     <div id="moderator-layer">
         <div class="alert-box">ВНИМАНИЕ: СТРАНИЦА УДАЛЕНА</div>
-        <p>Данный ресурс был заблокирован модератором за нарушение правил.</p>
-        <p>Вы можете просмотреть оставшиеся медиа-файлы:</p>
+        <p>Доступ к данным ограничен.</p>
         
         <img src="Mrca.png" class="mod-img">
         
         <video class="mod-video" controls autoplay loop>
             <source src="Cowboy.mp4" type="video/mp4">
         </video>
+        <p style="font-size: 12px; color: #666; margin-top: 15px;">Ошибка 404: Данные не найдены</p>
     </div>
 
-    <!-- ЭКРАН 2: LOST MEDIA -->
+    <!-- ЭКРАН 2: LOST MEDIA ПЕРЕПИСКА -->
     <div id="lost-media-layer">
-        <div class="file-info">
-            ОБЪЕКТ: СЭЛЛИ (SALLY) <br>
-            СТАТУС: АРХИВ ПОЛУЧЕН <br>
-            ДОСТУП: ОГРАНИЧЕН
+        <div style="color: #666; margin-bottom: 30px; font-size: 12px;">
+            ПОДКЛЮЧЕНИЕ К СЕРВЕРУ... УСПЕШНО.<br>
+            ИЗВЛЕЧЕНИЕ ПАКЕТОВ ДАННЫХ... ГОТОВО.
         </div>
-        
-        <div class="archive-content">
-            <p>> Запись №342. Тест пройден.</p>
-            <p>> Субъект проявляет признаки лидерства. Рингмастер больше не контролирует ситуацию.</p>
-            <p>> Город затих. Мы ждем, пока солнце зайдет.</p>
-            <p>> Тень Мунлитул становится длиннее. Маяки не отвечают.</p>
-            <br>
-            <p style="color: #00ff00;">[КОНЕЦ ФАЙЛА]</p>
+
+        <div class="chat-container">
+            <div class="msg">— город затих</div>
+            <div class="msg">— маяки не отвечают</div>
+            <div class="msg">— стоит ли обращаться к Маякистору?</div>
+            <div class="msg">— он уже не поможет</div>
+            <div class="msg">— думаешь?</div>
+            <div class="msg">— эй?</div>
+            <div class="msg">— <span class="cursor"></span></div>
         </div>
     </div>
 
-    <!-- ТОТ САМЫЙ КЛИК В УГЛУ -->
     <div id="trigger" onclick="openArchive()"></div>
 
     <script>
         function openArchive() {
             document.getElementById('moderator-layer').style.display = 'none';
             document.getElementById('lost-media-layer').style.display = 'block';
-            document.body.style.backgroundColor = "#000040";
+            document.body.style.backgroundColor = "#000022";
         }
     </script>
 </body>
